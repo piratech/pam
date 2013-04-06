@@ -1,0 +1,18 @@
+dt .description {
+	display: none;
+}
+
+dt:hover .description {
+	display: block;
+}
+
+.lage-dt dt {
+	width: 260px;
+}
+.lage-dt dd {
+	margin-left: 280px;
+}
+
+.blank-attribute {
+	display: none;
+}

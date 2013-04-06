@@ -1,4 +1,8 @@
 Pam::Application.routes.draw do
+  resources :people
+  match '/people/:id/attribute/:attribute(?:hash)' => 'people#get_attribute'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

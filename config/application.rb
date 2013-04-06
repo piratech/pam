@@ -2,6 +2,8 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require "active_ldap/railtie"
+require 'net/ldap'
+require 'digest/md5'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
