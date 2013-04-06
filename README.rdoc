@@ -1,0 +1,5 @@
+== Piratiger Account Manager
+
+Der PAM ist eine für den LV-Berlin angepasste Oberfläche für das LDAP der LandesIT.
+
+Mehr Details folgen später. 
