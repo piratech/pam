@@ -1,4 +1,7 @@
 Pam::Application.routes.draw do
+  resources :groups
+
+
   resources :people
   match '/people/:id/attribute/:attribute(?:hash)' => 'people#get_attribute'
 

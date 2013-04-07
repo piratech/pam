@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+function show_all_attributes() {
+	$(".blank-attribute").each(function(index) {
+		$(this).removeClass("blank-attribute");
+	});
+}
