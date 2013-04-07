@@ -13,5 +13,22 @@
 	<% done_list[m.id] = true }%>
 </dl>
 
+Gruppen:
+<ul>
+	<% @person.groups.each {|g| %>
+	<li>
+		<%= if g.description.nil? then g.cn else g.description end %>
+	</li>
+	<% } %>
+</ul>
+Departments:
+<ul>
+	<% @person.departments.each {|d| %>
+	<li>
+		<%= d.sn %>
+	</li>
+	<% } %>
+</ul>
+
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
