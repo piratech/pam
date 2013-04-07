@@ -45,4 +45,4 @@ gem 'jquery-rails'
 # LDAP
 gem 'activeldap'
 gem 'ruby-ldap'
-gem 'net-ldap'
+#gem 'net-ldap'

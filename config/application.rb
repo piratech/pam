@@ -2,7 +2,6 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require "active_ldap/railtie"
-require 'net/ldap'
 require 'digest/md5'
 
 if defined?(Bundler)
