@@ -16,4 +16,14 @@ class Person < ActiveLdap::Base
     :value => id,
     :attributes => [attr]).map {|dn, attrs| attrs[attr]}.flatten
   end
+
+  def auth password
+    begin
+      bind(:bind_dn => "uid=#{uid},ou=People,#{configurations[Rails.env]["base"]}", :host => configurations[Rails.env]["host"], :password => password)
+      return true
+    rescue ActiveLdap::AuthenticationError
+    return false
+    end
+  end
+
 end
