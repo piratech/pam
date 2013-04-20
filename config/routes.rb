@@ -8,6 +8,7 @@ Pam::Application.routes.draw do
 
   match '/login' => 'user#auth'
 
+  root :to => 'user#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

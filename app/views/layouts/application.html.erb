@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Pam</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<title>PAM</title>
+		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+	</head>
 
-<%= yield %>
+	<% if @MENU.count > 0 then %>
+	<body style="padding-top: 60px;">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+					<a class="brand" href="/">PAM</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<%@MENU.each { |k,e| %>
+							<li<%= ' class="active"'.html_safe if e[:active] %>>
+								<%= link_to e[:text], :controller => e[:controller], :action => e[:action] %></li>
+								<% } %>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% else %>
+	<body>
+		<% end %>
 
-</body>
+		<%= yield %>
+
+	</body>
 </html>

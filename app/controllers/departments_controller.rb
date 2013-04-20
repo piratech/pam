@@ -1,4 +1,9 @@
 class DepartmentsController < ApplicationController
+  before_filter :init
+  def init
+    @MENU[:departments][:active] = true
+  end
+
   # GET /departments
   # GET /departments.json
   def index

@@ -1,4 +1,9 @@
 class PeopleController < ApplicationController
+  before_filter :init
+  def init
+    @MENU[:people][:active] = true
+  end
+
   # GET /people
   # GET /people.json
   def index

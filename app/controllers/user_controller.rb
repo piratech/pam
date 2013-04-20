@@ -1,4 +1,12 @@
 class UserController < ApplicationController
+  before_filter :init
+  def init
+    @MENU[:home][:active] = true
+  end
+
+  def index
+  end
+
   def auth
     if params[:name] then
       begin

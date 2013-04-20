@@ -1,4 +1,9 @@
 class GroupsController < ApplicationController
+  before_filter :init
+  def init
+    @MENU[:groups][:active] = true
+  end
+
   # GET /groups
   # GET /groups.json
   def index
