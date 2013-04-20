@@ -22,6 +22,15 @@
 								<% } %>
 						</ul>
 					</div>
+					<% if @USER_LOGIN then%>
+					<div class="nav-collapse collapse pull-right">
+						<ul class="nav">
+							<li>
+								<%= link_to "Logout", :controller => 'user', :action => 'logout' %>
+							</li>
+						</ul>
+					</div>
+					<% end %>
 				</div>
 			</div>
 		</div>

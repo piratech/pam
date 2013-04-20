@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
        }
     }
 
+    if ((controller_name != 'user') or (action_name != 'auth')) and session[:user_id].nil? then
+      redirect_to :controller => "user", :action => "auth"
+    end
+    @USER_LOGIN = !session[:user_id].nil?
   end
 
 end

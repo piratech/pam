@@ -7,6 +7,7 @@ Pam::Application.routes.draw do
   match '/people/:id/attribute/:attribute(?:hash)' => 'people#get_attribute'
 
   match '/login' => 'user#auth'
+  match '/logout' => 'user#logout'
 
   root :to => 'user#index'
 

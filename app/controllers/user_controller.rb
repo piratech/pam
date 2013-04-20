@@ -8,6 +8,7 @@ class UserController < ApplicationController
   end
 
   def auth
+    @MENU[:home][:active] = false
     if params[:name] then
       begin
         u= Person.find params[:name]
@@ -21,10 +22,10 @@ class UserController < ApplicationController
         @error = "Username oder Passwort ist falsch"
       end
     end
-    if params[:out] then
-      reset_session
-      redirect_to :action => 'auth'
-    end
   end
 
+  def logout
+    reset_session
+    redirect_to :action => 'auth'
+  end
 end
