@@ -38,11 +38,4 @@
 	OID '<%= m.syntax.id %>' (<%= m.syntax.description %>) ist nicht implementiert!
 	<pre><%= @person.attributes[m.name] %></pre>																														
 	<% end %>
-
-	<button onclick="$('#<%= "debug_"+m.name%>').show(); return false;">
-		Schemata
-	</button>
-	<div id="<%= "debug_"+m.name%>" style="display: none;">
-		<%= debug m %>
-	</div>
 </dd>
