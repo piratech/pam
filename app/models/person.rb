@@ -17,6 +17,11 @@ class Person < ActiveLdap::Base
     :attributes => [attr]).map {|dn, attrs| attrs[attr]}.flatten
   end
 
+  def member? group
+    g= Group.search(:filter => "(&(memberUid=#{id})(cn=#{group}))");
+    return (g.count > 0)
+  end
+
   def auth password
     begin
       bind(:bind_dn => "uid=#{uid},ou=People,#{configurations[Rails.env]["base"]}", :host => configurations[Rails.env]["host"], :password => password)

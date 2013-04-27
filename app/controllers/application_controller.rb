@@ -8,26 +8,35 @@ class ApplicationController < ActionController::Base
         :action => "index"
        },
        :people =>{
-        :text => "Personen",
+        :text => "Benutzer",
         :controller => "people",
         :action => "index"
        },
        :groups =>{
         :text => "Gruppen",
         :controller => "groups",
-        :action => "index"
+        :action => "index",
+        :hidden => true
        },
        :departments =>{
         :text => "Abteilungen",
         :controller => "departments",
-        :action => "index"
+        :action => "index",
+        :hidden => true
        }
     }
 
     if ((controller_name != 'user') or (action_name != 'auth')) and session[:user_id].nil? then
       redirect_to :controller => "user", :action => "auth"
     end
-    @USER_LOGIN = !session[:user_id].nil?
+    if !session[:user_id].nil? then
+      @USER_LOGIN = true
+      @USER = Person.find session[:user_id]
+      if @USER.member? 'ldapadmin' then
+        @MENU[:groups][:hidden] = false
+        @MENU[:departments][:hidden] = false
+      end
+    end
   end
 
 end

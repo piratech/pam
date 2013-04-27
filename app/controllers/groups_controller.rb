@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   before_filter :init
   def init
     @MENU[:groups][:active] = true
+    redirect_to :controller => 'home', :action => '403' if !@USER.member? 'ldapadmin'
   end
 
   # GET /groups

@@ -16,10 +16,10 @@
 					<a class="brand" href="/">PAM</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav">
-							<%@MENU.each { |k,e| %>
+							<%@MENU.each { |k,e| if !e[:hidden] then %>
 							<li<%= ' class="active"'.html_safe if e[:active] %>>
 								<%= link_to e[:text], :controller => e[:controller], :action => e[:action] %></li>
-								<% } %>
+								<% end } %>
 						</ul>
 					</div>
 					<% if @USER_LOGIN then%>
