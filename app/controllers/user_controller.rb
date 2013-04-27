@@ -5,6 +5,19 @@ class UserController < ApplicationController
   end
 
   def index
+    @user = @USER
+    if params[:new] then
+      @hide_data = true
+      if params[:new] != params[:new2] then
+        @error = "Die Passwort wiederholung ist falsch!"
+      elsif !@user.auth params[:old] then
+        @error = "Dein bisheriges Password ist falsch!"
+      else
+        @user.auth= params[:new]
+        @user.save
+        @hide_data = false
+      end
+    end
   end
 
   def auth

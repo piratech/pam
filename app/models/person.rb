@@ -31,4 +31,8 @@ class Person < ActiveLdap::Base
     end
   end
 
+  def auth= password
+    self.userPassword= "{MD5}" + Base64.encode64(Digest::MD5.digest(password))
+  end
+
 end
