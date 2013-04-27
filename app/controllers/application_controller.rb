@@ -30,11 +30,15 @@ class ApplicationController < ActionController::Base
       redirect_to :controller => "user", :action => "auth"
     end
     if !session[:user_id].nil? then
-      @USER_LOGIN = true
-      @USER = Person.find session[:user_id]
-      if @USER.member? 'ldapadmin' then
-        @MENU[:groups][:hidden] = false
-        @MENU[:departments][:hidden] = false
+      begin
+        @USER_LOGIN = true
+        @USER = Person.find session[:user_id]
+        if @USER.member? 'ldapadmin' then
+          @MENU[:groups][:hidden] = false
+          @MENU[:departments][:hidden] = false
+        end
+      rescue
+        session[:user_id]= nil
       end
     end
   end
