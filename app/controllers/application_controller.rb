@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
        :people =>{
         :text => "Benutzer",
         :controller => "people",
-        :action => "index"
+        :action => "index",
+        :hidden => true
        },
        :groups =>{
         :text => "Gruppen",
@@ -31,8 +32,10 @@ class ApplicationController < ActionController::Base
         @USER_LOGIN = true
         @USER = Person.find session[:user_id]
         if @USER.member? 'ldapadmin' then
-          @MENU[:groups][:hidden] = false
-          @MENU[:departments][:hidden] = false
+          @MENU[:people][:hidden] = false
+        end
+        if @USER.member? 'ldapmanager' then
+          @MENU[:people][:hidden] = false
         end
       rescue
         session[:user_id]= nil

@@ -2,6 +2,7 @@ class PeopleController < ApplicationController
   before_filter :init
   def init
     @MENU[:people][:active] = true
+    redirect_to :controller => 'home', :action => 'error_403' if !@USER.member? 'ldapmanager'
   end
 
   # GET /people
