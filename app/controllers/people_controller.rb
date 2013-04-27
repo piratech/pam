@@ -75,8 +75,15 @@ class PeopleController < ApplicationController
         params[:person][n] = f.tempfile.read
       }
     end
-    
+
     @person = Person.new(params[:person])
+
+    @person.homeDirectory= "/home/ldap/#{@person.uid}"
+    @person.gidNumber= 500
+    @person.uidNumber= 1000
+    Person.all.each{|p|
+      @person.uidNumber = p.uidNumber + 1 if p.uidNumber >= @person.uidNumber
+    }
 
     respond_to do |format|
       if @person.save
