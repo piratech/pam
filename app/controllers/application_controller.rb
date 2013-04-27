@@ -26,9 +26,6 @@ class ApplicationController < ActionController::Base
        }
     }
 
-    if ((controller_name != 'user') or ((action_name != 'auth') and (action_name != 'token'))) and session[:user_id].nil? then
-      redirect_to :controller => "user", :action => "auth"
-    end
     if !session[:user_id].nil? then
       begin
         @USER_LOGIN = true
@@ -40,6 +37,9 @@ class ApplicationController < ActionController::Base
       rescue
         session[:user_id]= nil
       end
+    end
+    if ((controller_name != 'user') or ((action_name != 'auth') and (action_name != 'token'))) and session[:user_id].nil? then
+      redirect_to :controller => "user", :action => "auth"
     end
   end
 
