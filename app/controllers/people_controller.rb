@@ -78,15 +78,19 @@ class PeopleController < ApplicationController
 
     @person = Person.new(params[:person])
 
+    token = SecureRandom.hex(20)
+
     @person.homeDirectory= "/home/ldap/#{@person.uid}"
     @person.gidNumber= 500
     @person.uidNumber= 1000
+    @person.auth= token
     Person.all.each{|p|
       @person.uidNumber = p.uidNumber + 1 if p.uidNumber >= @person.uidNumber
     }
 
     respond_to do |format|
       if @person.save
+        UserMailer.welcome_email(@person,@USER,token).deliver
         format.html { redirect_to @person, notice: 'Person was successfully created.' }
         format.json { render json: @person, status: :created, location: @person }
       else

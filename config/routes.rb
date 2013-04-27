@@ -6,13 +6,15 @@ Pam::Application.routes.draw do
   resources :people
   match '/people/:id/attribute/:attribute(?:hash)' => 'people#get_attribute'
 
-  match '/login' => 'user#auth'
+  match '/login(/:uid)' => 'user#auth'
   match '/logout' => 'user#logout'
 
   match '/403', :to => 'home#error_403'
   match "/404", :to => "home#error_404"
   match "/422", :to => "home#error_422"
   match "/500", :to => "home#error_500"
+
+  match '/token/:uid/:token' => 'user#token'
 
   root :to => 'user#index'
 

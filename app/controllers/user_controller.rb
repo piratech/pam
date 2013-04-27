@@ -20,6 +20,26 @@ class UserController < ApplicationController
     end
   end
 
+  def token
+    begin
+      u= Person.find params[:uid]
+      if !u.auth params[:token] then
+        @error = "Der Link ist alt oder defekt!"
+      end
+    rescue ActiveLdap::EntryNotFound
+      @error = "Der Link ist alt oder defekt!"
+    end
+    if params[:password] then
+      if params[:password] != params[:password2] then
+        @error = "Deine Passwordwiederholung ist falsch"
+      else
+        u.auth= params[:password]
+        u.save
+        redirect_to :controller => "user", :action => "auth", :uid => u.uid
+      end
+    end
+  end
+
   def auth
     @MENU[:home][:active] = false
     if params[:name] then
