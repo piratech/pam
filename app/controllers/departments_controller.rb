@@ -2,7 +2,7 @@ class DepartmentsController < ApplicationController
   before_filter :init
   def init
     @MENU[:departments][:active] = true
-    redirect_to :controller => 'home', :action => '403' if !@USER.member? 'ldapadmin'
+    redirect_to :controller => 'home', :action => 'error_403' if !@USER.member? 'ldapadmin'
   end
 
   # GET /departments

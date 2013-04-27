@@ -9,6 +9,11 @@ Pam::Application.routes.draw do
   match '/login' => 'user#auth'
   match '/logout' => 'user#logout'
 
+  match '/403', :to => 'home#error_403'
+  match "/404", :to => "home#error_404"
+  match "/422", :to => "home#error_422"
+  match "/500", :to => "home#error_500"
+
   root :to => 'user#index'
 
   # The priority is based upon order of creation:
